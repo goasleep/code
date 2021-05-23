@@ -12,7 +12,7 @@ type Result struct {
 
 // Matcher defines the behavior required by types that want
 // to implement a new search type.
-type Matcher interface {
+type Matcher interface { // 声明接口类型
 	Search(feed *Feed, searchTerm string) ([]*Result, error)
 }
 
