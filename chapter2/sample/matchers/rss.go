@@ -47,7 +47,7 @@ type (
 		ManagingEditor string   `xml:"managingEditor"`
 		WebMaster      string   `xml:"webMaster"`
 		Image          image    `xml:"image"`
-		Item           []item   `xml:"item"`
+		Item           []item   `xml:"item"` //channel 里包含image和item。RSS格式可以参考https://www.cnblogs.com/tuyile006/p/3691024.html
 	}
 
 	// rssDocument defines the fields associated with the rss document.
@@ -87,7 +87,7 @@ func (m rssMatcher) Search(feed *search.Feed, searchTerm string) ([]*search.Resu
 
 		// If we found a match save the result.
 		if matched {
-			results = append(results, &search.Result{
+			results = append(results, &search.Result{ //内置append，可以将数值放入切片内，这里是个指针数组，因为通过&取地址
 				Field:   "Title",
 				Content: channelItem.Title,
 			})
@@ -112,13 +112,13 @@ func (m rssMatcher) Search(feed *search.Feed, searchTerm string) ([]*search.Resu
 }
 
 // retrieve performs a HTTP Get request for the rss feed and decodes the results.
-func (m rssMatcher) retrieve(feed *search.Feed) (*rssDocument, error) {
+func (m rssMatcher) retrieve(feed *search.Feed) (*rssDocument, error) { // 小写开头，并未对外暴露该函数
 	if feed.URI == "" {
 		return nil, errors.New("No rss feed uri provided")
 	}
 
 	// Retrieve the rss feed document from the web.
-	resp, err := http.Get(feed.URI)
+	resp, err := http.Get(feed.URI)//使用http.Get() 请求网络
 	if err != nil {
 		return nil, err
 	}

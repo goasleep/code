@@ -4,7 +4,7 @@ import ( //声明导入项
 	"log" //标准库包里导入的只需要写包名，回去GOROOT和GOPATH环境变量引用的位置去寻找
 	"os"
 
-	_ "github.com/goinaction/code/chapter2/sample/matchers" //注意前面有下划线，这是对包进行初始化操作，而不是导入包，并且调用包内对应代码的定义的init函数
+	_ "github.com/goinaction/code/chapter2/sample/matchers" //注意前面有下划线，这是对包进行初始化操作，并且调用包内对应代码的定义的init函数
 	"github.com/goinaction/code/chapter2/sample/search" //导入包，也需要执行包里面的init函数
 )
 

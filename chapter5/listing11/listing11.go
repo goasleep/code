@@ -13,7 +13,7 @@ type user struct {
 }
 
 // notify implements a method with a value receiver.
-func (u user) notify() {
+func (u user) notify() { //关键字(u user) 是接收者，将函数和接受者绑定在一起。这种也叫做方法
 	fmt.Printf("Sending User Email To %s<%s>\n",
 		u.name,
 		u.email)
